@@ -14,10 +14,12 @@
 
 -- Simple script to write info files to be used by other programs 
 
+local mp = require 'mp'
+
 -- Config options
 
 local intervalLength = 2 -- refresh interval in seconds
-local outputFilePath = "infofile.csv" -- path to save info file to, includes folder by default will write file into mpv binary directory
+local outputFilePath =  os.getenv('LOCALAPPDATA') .. "\\mpv-infofile.csv" -- path to save info file to, note: on linux "~~" may work, on windows use getenv
 local verbose = false -- if true it will show a when it writes the file
 local props = { -- list of properties to keep track of
 	"filename",
@@ -53,8 +55,6 @@ local props = { -- list of properties to keep track of
 }
 
 --
-
-local mp = require 'mp'
 
 function write_info_file()
 	local tl = { }
