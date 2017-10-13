@@ -34,7 +34,7 @@ local props = { -- list of properties to keep track of
 	"stream-end",
 	"duration",
 	"time-pos",
-    "time-remaining",
+	"time-remaining",
 	"audio-codec-name",
 	"audio-codec",
 	"current-ao",
