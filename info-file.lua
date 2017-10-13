@@ -33,16 +33,20 @@ local props = { -- list of properties to keep track of
 	"stream-pos",
 	"stream-end",
 	"duration",
+	"time-pos",
+    "time-remaining",
 	"audio-codec-name",
 	"audio-codec",
 	"current-ao",
-	"channel-count",
-	"audio-samplerate",
+	"audio-in-params",
+	"audio-out-params",
 	"width",
 	"height",
 	"video-format",
 	"video-codec",
-	"current-vo ",
+	"video-in-params",
+	"video-out-params",
+	"current-vo",
 	"container-fps",
 	"estimated-vf-fps",
 	"video-aspect",
@@ -50,6 +54,7 @@ local props = { -- list of properties to keep track of
 	"mpv-version",
 	"ffmpeg-version",
 	"vo",
+	"vf",
 	"vulkan-device",
 	"gpu-api"
 }
@@ -59,7 +64,7 @@ local props = { -- list of properties to keep track of
 function write_info_file()
 	local tl = { }
 	for i,name in ipairs(props) do
-		tl[name] = mp.get_property_osd(name)
+		tl[name] = string.gsub(mp.get_property_osd(name), "\n", "\\n")
 	end
 	saveFile(tl,outputFilePath)
 	if verbose then
